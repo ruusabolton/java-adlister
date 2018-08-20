@@ -9,9 +9,13 @@
 <%--Inside of login.jsp write some code to check the submmitted values.
 If the username submitted is "admin", and the password is "password", redirect the user to the profile page,
 otherwise, redirect back to the login form.--%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%     String username = (request.getParameter("username") != null) ? request.getParameter("username") : "";%>
+<% request.setAttribute("username", username); %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html>
 <head>
     <title>Profile Page</title>
@@ -20,9 +24,7 @@ otherwise, redirect back to the login form.--%>
 
 
 <h1>Form Accepted</h1>
-
-<p><b>Welcome, </b>
-    <%= request.getParameter("uname")%>
+<p><b>Welcome,  Administrator!</b>
 </p>
 
 
