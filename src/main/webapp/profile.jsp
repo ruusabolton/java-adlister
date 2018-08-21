@@ -8,8 +8,9 @@
 <body>
     <jsp:include page="partials/navbar.jsp" />
 
+
     <div class="container">
-        <h1>Viewing your profile.</h1>
+        <h1>Well, howdy, ${username} </h1>
     </div>
 
 </body>
