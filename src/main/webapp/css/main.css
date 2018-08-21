@@ -1,3 +1,45 @@
 body {
     background-color: aquamarine;
 }
+
+ .container {
+     padding: 25px;
+     background-color: powderblue;
+     border: 10px solid greenyellow;
+     box-shadow: 5px 2px green;
+     width: 300px;
+     heigth: 100px;
+     font-size: larger;
+ }
+
+ .fromTop{
+     margin-top: 70px;
+     margin-left: 20px;
+ }
+textarea {
+    width: 150px;
+    height: 50px;
+}
+/*#logMe{*/
+    /*text-align: center;*/
+    /*horiz-align: center;*/
+/*}*/
+.psw {
+    font-size: small;
+}
+
+nav{
+    background-color: lightcyan;
+    font-family: AppleMyungjo;
+    height: 50px;
+    font-style: italic;
+    font-size: 24px;
+    box-shadow: 5px 2px green;
+
+}
+
+.rejected {
+    font-size: 24px;
+    color: red;
+    text-align: center;
+}

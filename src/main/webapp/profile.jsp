@@ -10,23 +10,32 @@
 If the username submitted is "admin", and the password is "password", redirect the user to the profile page,
 otherwise, redirect back to the login form.--%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%     String username = (request.getParameter("username") != null) ? request.getParameter("username") : "";%>
-<% request.setAttribute("username", username); %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <html>
 <head>
+    <style><%@ include file="./css/main.css" %></style>
+
+
     <title>Profile Page</title>
 </head>
-<body>
+    <body>
+
+            <%@ include file="partials/navbar.jsp" %>
+
+        <%@ include file="/partials/head.jsp" %>
+            <%@ include file="/partials/logout.jsp" %>
 
 
-<h1>Form Accepted</h1>
-<p><b>Welcome,  Administrator!</b>
-</p>
 
+            <div class="fromTop">
+            <p><h1><b>Welcome,  <%= session.getAttribute("username") %>!</b></h1>
+                <hr>
+                Click on your name to log out.</p>
+               session.removeAttribute("username");
 
-</body>
+        </div>
+
+    </body>
 </html>
