@@ -13,9 +13,13 @@
     <title>Results page</title>
 </head>
 <body>
-    <h1>${message}</h1>
+    <h1>You entered ${userNbr}.</h1>
 
-<c:if test="<{isNotCorrect}>"></c:if>;
-<a href=".guess">Guess Again.</a>
+    <h1>The random number is ${correctNumber}.</h1>
+
+    <c:if test="<{isNotCorrect}>" />
+    <a href="guess_form.jsp">Guess Again.</a>
+
+
 </body>
 </html>
