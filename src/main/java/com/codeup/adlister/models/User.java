@@ -1,5 +1,7 @@
 package com.codeup.adlister.models;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 public class User {
     private long id;
     private String username;
@@ -9,14 +11,14 @@ public class User {
     public User() {}
 
     public User(String username, String email, String password) {
-        this.username = username;
+        this.username = StringUtils.capitalize(username);
         this.email = email;
         this.password = password;
     }
 
     public User(long id, String username, String email, String password) {
         this.id = id;
-        this.username = username;
+        this.username = StringUtils.capitalize(username);
         this.email = email;
         this.password = password;
     }
