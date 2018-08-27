@@ -16,7 +16,7 @@ public class MySQLUsersDao implements Users {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
                 config.getUrl(),
-                config.getUsername(),
+                config.getUser(),
                 config.getPassword()
             );
         } catch (SQLException e) {
@@ -25,23 +25,24 @@ public class MySQLUsersDao implements Users {
     }
 
 
-//    @Override
-//    public List<User> all() {
-//        PreparedStatement stmt = null;
-//        try {
-//            stmt =  connection.prepareStatement("SELECT * FROM users");
-//            ResultSet rs = stmt.executeQuery();
-//            return createUsersFromResults(rs);
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error retrieving all users.", e);
-//        }
-//    }
+    @Override
+    public List<User> all() {
+        PreparedStatement stmt = null;
+        try {
+            stmt =  connection.prepareStatement("SELECT * FROM users");
+            ResultSet rs = stmt.executeQuery();
+            return createUsersFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users.", e);
+        }
+    }
 
     @Override
     public User findByUsername(String username) {
         PreparedStatement stmt = null;
         try {
-            stmt = (PreparedStatement) connection.prepareStatement("SELECT * FROM users where username =?");
+            String query = "SELECT * FROM users where username =? LIMIT 1";
+            stmt = connection.prepareStatement(query);
 
             stmt.setString(1, username);
             return extractUser(stmt.executeQuery());
@@ -86,15 +87,24 @@ public class MySQLUsersDao implements Users {
 
 //to be used in pvt createUsersfromResult
 
-    private User extractUser(ResultSet rs) throws SQLException {
-        return new User(
-            rs.getLong("id"),
-            rs.getString("username"),
-            rs.getString("email"),
-            rs.getString("password")
 
-                );
-    }
+
+    private User extractUser(ResultSet rs) throws SQLException {
+        if (!rs.next())
+        { return null;}
+
+
+//if user does not exist, return null. Otherwise return user's bits.
+
+            return new User(
+                    rs.getLong("id"),
+                    rs.getString("username"),
+                    rs.getString("email"),
+                    rs.getString("password")
+
+            );
+        }
+
 //to be used in list-all method
     private List<User> createUsersFromResults(ResultSet rs) throws SQLException {
         List<User> users = new ArrayList<>();

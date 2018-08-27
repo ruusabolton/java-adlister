@@ -31,6 +31,11 @@ public class LoginServlet extends HttpServlet {
         // TODO: make sure we find a user with that username
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
+        if(user== null){
+            response.sendRedirect("/login");
+            return;
+        }
+
         // TODO: check the submitted password against what you have in your database
         boolean validAttempt = (boolean) password.equals(user.getPassword());
 
